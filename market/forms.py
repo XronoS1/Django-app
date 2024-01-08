@@ -1,7 +1,7 @@
 from allauth.account.forms import SignupForm
 from django.contrib.auth.models import Group
 from django import forms
-from .models import Product
+from .models import Product, Data, Comments
 
 
 class BasicSignupForm(SignupForm):
@@ -18,3 +18,20 @@ class ProductForm(forms.ModelForm):
         fields = [
             'name'
         ]
+
+
+class DataCreateForm(forms.ModelForm):
+    class Meta:
+        model = Data
+        fields = [
+            'address',
+            'phone'
+        ]
+
+
+RATE_CHOICES = [(i, str(i)) for i in range(1, 6)]
+
+
+class CommentsCreateForm(forms.Form):
+    rate = forms.TypedChoiceField(choices=RATE_CHOICES, coerce=int)
+    comment = forms.CharField(max_length=50)

@@ -1,0 +1,6 @@
+.env
+venv
+django_cache
+__pycache__
+db.sqlite3
+media
